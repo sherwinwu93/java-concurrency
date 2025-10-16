@@ -5,7 +5,7 @@ package c03;
  * @date 2025/10/15
  * @description
  */
-public class PriorityTest {
+public class ThreadPriorityTest {
     public static void main(String[] args) {
         Thread a = new Thread();
         System.out.println("默认优先级:" + a.getPriority());
