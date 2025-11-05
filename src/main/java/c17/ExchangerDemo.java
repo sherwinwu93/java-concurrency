@@ -8,11 +8,28 @@ import java.util.concurrent.Exchanger;
  * @description
  */
 public class ExchangerDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         Exchanger<String> exchanger = new Exchanger<>();
 
         new Thread(() -> {
-            System.out.println("这是线程A,得到");
-        });
+            try {
+                System.out.println("这是线程A,得到另一个线程的数据:"
+                        + exchanger.exchange("这是来自线程A的数据"));
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+
+        System.out.println("这时线程A是阻塞的,在等待线程B的数据");
+        Thread.sleep(1000);
+
+        new Thread(() -> {
+            try {
+                System.out.println("这是线程B,得到另一个线程的数据:"
+                        + exchanger.exchange("这是来自线程B的数据"));
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
     }
 }
