@@ -7,7 +7,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class ThreadPool {
+public class ScheduledThreadPool {
     private static final ScheduledExecutorService executor =
             new ScheduledThreadPoolExecutor(1, Executors.defaultThreadFactory());
     private static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
